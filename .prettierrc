@@ -1,5 +1,5 @@
 {
-  "arrowParens": "always",
+  "arrowParens": "avoid",
   "bracketSpacing": true,
   "endOfLine": "lf",
   "htmlWhitespaceSensitivity": "css",
@@ -9,7 +9,7 @@
   "printWidth": 100,
   "proseWrap": "preserve",
   "quoteProps": "as-needed",
-  "requirePragma": false,
+  "requirePragma": true,
   "semi": true,
   "singleQuote": true,
   "tabWidth": 2,
