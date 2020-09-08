@@ -1,16 +1,23 @@
+import Vue from 'vue';
 import axios from '@/plugins/axios';
 
 const professionsStore = {
   namespaced: true,
-  state: {},
+  state: {
+    professions: [],
+  },
   getters: {
     getProfessions() {},
   },
-  mutations: {},
+  mutations: {
+    FETCH_PROFESSIONS(state, professions) {
+      Vue.set(state, 'professions', [...professions]);
+    },
+  },
   actions: {
-    async fetchProfessions() {
-      const response = await axios.get();
-      console.log(response.professions);
+    async fetchProfessions({ commit }) {
+      const { professions } = await axios.get();
+      commit('FETCH_PROFESSIONS', professions);
     },
   },
 };
