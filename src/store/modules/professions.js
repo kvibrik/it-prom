@@ -4,20 +4,26 @@ import axios from '@/plugins/axios';
 const professionsStore = {
   namespaced: true,
   state: {
-    professions: [],
+    professions: {},
   },
   getters: {
-    getProfessions() {},
+    getProfessions({ professions }) {
+      return professions;
+    },
   },
   mutations: {
     FETCH_PROFESSIONS(state, professions) {
-      Vue.set(state, 'professions', [...professions]);
+      Vue.set(state, 'professions', professions);
     },
   },
   actions: {
     async fetchProfessions({ commit }) {
       const { professions } = await axios.get();
-      commit('FETCH_PROFESSIONS', professions);
+      const reducedProfessions = professions.reduce((acc, current) => {
+        acc[current.id] = current;
+        return acc;
+      }, {});
+      commit('FETCH_PROFESSIONS', reducedProfessions);
     },
   },
 };
