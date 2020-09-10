@@ -1,5 +1,5 @@
 <template>
-  <BRow class="mt-3 mb-3" hover>
+  <BRow class="pt-3 pb-3 border">
     <BCol cols=3>{{getFullName}}</BCol>
     <BCol cols=3>{{getProfession}}</BCol>
     <BCol cols=2>{{getDepartment}}</BCol>
@@ -48,4 +48,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .border {
+    box-sizing: border-box;
+    border-bottom: 1px solid rgb(51,51,51);
+  }
+</style>

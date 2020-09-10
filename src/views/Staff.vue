@@ -24,6 +24,7 @@
       @changeUser="onChangeUser"
       @cancel="closeModal"
     />
+    <BButton class="mt-4" variant="success" @click="onOpenModal">Добавить сотрудника</BButton>
   </BContainer>
 </template>
 
@@ -39,7 +40,17 @@ export default {
     UserModal,
   },
   data: () => ({
-    user: {},
+    user: {
+      id: Math.random(),
+      name: {
+        firstName: '',
+        secondName: '',
+        lastName: '',
+      },
+      professionId: null,
+      departmentId: null,
+      note: '',
+    },
     openModal: false,
   }),
   computed: {
@@ -56,8 +67,10 @@ export default {
       }
     },
     onOpenModal({ id }) {
-      const user = this.staff[id];
-      this.user = user;
+      if (id) {
+        const user = this.staff[id];
+        this.user = user;
+      }
       this.openModal = true;
     },
     onChangeUser(user) {

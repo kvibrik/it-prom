@@ -43,7 +43,18 @@
 <script>
 export default {
   name: 'UserModal',
-  props: ['user', 'prof', 'dep'],
+  props: {
+    user: {
+      type: Object,
+      required: true,
+    },
+    prof: {
+      type: Object,
+    },
+    dep: {
+
+    },
+  },
   data: () => ({
     userInfo: {},
     selectedProf: null,
@@ -73,9 +84,9 @@ export default {
   },
   beforeMount() {
     const user = JSON.parse(JSON.stringify(this.user));
-    const profession = this.prof[user.professionId];
+    const profession = this.prof[user.professionId] || '';
     const professions = Object.values(this.prof);
-    const department = this.dep[user.departmentId];
+    const department = this.dep[user.departmentId] || '';
     const departments = Object.values(this.dep);
 
     this.userInfo = user;
