@@ -5,7 +5,7 @@
     <BCol cols=2>{{getDepartment}}</BCol>
     <BCol cols=3>{{user.note}}</BCol>
     <BCol class="h5" cols=1>
-      <BIconstack class="pointer" variant="success" @click="emitOpenModal">
+      <BIconstack v-b-modal.user-modal class="pointer" variant="success" @click="emitOpenModal">
         <BIcon stacked icon="pencil"></BIcon>
         <BIcon stacked icon="square" scale="1.2"></BIcon>
       </BIconstack>

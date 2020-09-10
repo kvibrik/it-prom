@@ -5,7 +5,7 @@
       <BCol cols=5>Примечание</BCol>
       <BCol cols=1></BCol>
     </BRow>
-    <Profession :professions="getProfessions" />
+    <Profession :professions="professions" />
   </BContainer>
 </template>
 
@@ -19,7 +19,7 @@ export default {
     Profession,
   },
   computed: {
-    ...mapGetters('professions', ['getProfessions']),
+    ...mapGetters('professions', ['professions']),
   },
 };
 </script>

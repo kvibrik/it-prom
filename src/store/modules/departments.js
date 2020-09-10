@@ -7,7 +7,7 @@ const departmentsStore = {
     departments: {},
   },
   getters: {
-    getDepartments({ departments }) {
+    departments({ departments }) {
       return departments;
     },
   },

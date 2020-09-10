@@ -15,9 +15,6 @@ const staffStore = {
     FETCH_STAFF(state, staff) {
       Vue.set(state, 'staff', staff);
     },
-    DELETE_USER(state, user) {
-      delete state.staff[user];
-    },
   },
   actions: {
     async fetchStaff({ commit }) {
@@ -35,6 +32,11 @@ const staffStore = {
     removeUser({ state, commit }, id) {
       const staff = JSON.parse(JSON.stringify(state.staff));
       delete staff[id];
+      commit('FETCH_STAFF', staff);
+    },
+    changeUser({ commit, state }, user) {
+      const staff = JSON.parse(JSON.stringify(state.staff));
+      staff[user.id] = user.user;
       commit('FETCH_STAFF', staff);
     },
   },

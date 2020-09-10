@@ -7,7 +7,7 @@ const professionsStore = {
     professions: {},
   },
   getters: {
-    getProfessions({ professions }) {
+    professions({ professions }) {
       return professions;
     },
   },

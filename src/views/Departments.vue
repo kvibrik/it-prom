@@ -6,7 +6,7 @@
       <BCol cols=3>Родительский отдел</BCol>
       <BCol cols=1></BCol>
     </BRow>
-    <Department :departments="getDepartments" />
+    <Department :departments="departments" />
   </BContainer>
 </template>
 
@@ -20,7 +20,7 @@ export default {
     Department,
   },
   computed: {
-    ...mapGetters('departments', ['getDepartments']),
+    ...mapGetters('departments', ['departments']),
   },
 };
 </script>
