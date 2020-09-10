@@ -7,13 +7,16 @@ const staffStore = {
     staff: {},
   },
   getters: {
-    getStaff({ staff }) {
+    staff({ staff }) {
       return staff;
     },
   },
   mutations: {
     FETCH_STAFF(state, staff) {
       Vue.set(state, 'staff', staff);
+    },
+    DELETE_USER(state, user) {
+      delete state.staff[user];
     },
   },
   actions: {
@@ -24,6 +27,15 @@ const staffStore = {
         return acc;
       }, {});
       commit('FETCH_STAFF', reducedStaff);
+    },
+    setStaff({ state, commit }) {
+      const { staff } = state;
+      commit('FETCH_STAFF', staff);
+    },
+    removeUser({ state, commit }, id) {
+      const staff = JSON.parse(JSON.stringify(state.staff));
+      delete staff[id];
+      commit('FETCH_STAFF', staff);
     },
   },
 };
