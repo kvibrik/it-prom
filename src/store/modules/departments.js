@@ -25,6 +25,27 @@ const departmentsStore = {
       }, {});
       commit('FETCH_DEPARTMENTS', reducedDepartments);
     },
+    removeDepartment({ state, commit }, id) {
+      const depArray = Object.values(JSON.parse(JSON.stringify(state.departments)));
+      delete depArray[id];
+      depArray.forEach((dep) => {
+        if (dep.parentId === id) {
+          // eslint-disable-next-line no-param-reassign
+          dep.parentId = '';
+        }
+      });
+      const departments = depArray.reduce((acc, current) => {
+        acc[current.id] = current;
+        return acc;
+      }, {});
+      delete departments[id];
+      commit('FETCH_DEPARTMENTS', departments);
+    },
+    changeDepartment({ commit, state }, prof) {
+      const departments = JSON.parse(JSON.stringify(state.departments));
+      departments[prof.id] = prof.prof;
+      commit('FETCH_DEPARTMENTS', departments);
+    },
   },
 };
 

@@ -58,9 +58,8 @@ export default {
     },
     onChangeProfession(prof) {
       this.changeProfession(prof);
-      this.openModal = false;
+      this.closeModal();
     },
-
     closeModal() {
       this.openModal = false;
       this.profession = {

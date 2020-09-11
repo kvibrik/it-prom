@@ -10,36 +10,72 @@
       <Department
         :dep="dep"
         :deps="departments"
-        @removeProf="onRemoveDep"
+        @removeDep="onRemoveDep"
         @openModal="onOpenModal"
       />
     </div>
-    <BButton class="mt-4" variant="success" @click="onOpenModal">Добавить сотрудника</BButton>
+    <DepartmentModal
+      v-if="openModal"
+      @changeDepartment="onChangeDepartment"
+      @cancel="closeModal"
+      :dep="department"
+      :deps="departments"
+    />
+    <BButton class="mt-4" variant="success" @click="onOpenModal">Добавить отдел</BButton>
   </BContainer>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import Department from '@/components/Department.vue';
+import DepartmentModal from '@/components/DepartmentModal.vue';
 
 export default {
   name: 'Departments',
   components: {
     Department,
+    DepartmentModal,
   },
   data: () => ({
     openModal: false,
     department: {
       id: Math.random(),
       note: '',
+      parentId: '',
     },
   }),
   computed: {
     ...mapGetters('departments', ['departments']),
   },
   methods: {
-    onOpenModal() {},
-    onRemoveDep() {},
+    ...mapActions('staff', ['removeUserProfession', 'removeUserDepartment']),
+    ...mapActions('departments', ['removeDepartment', 'changeDepartment']),
+    onOpenModal({ id }) {
+      if (id) {
+        const department = this.departments[id];
+        this.department = department;
+      }
+      this.openModal = true;
+    },
+    async onRemoveDep({ id }) {
+      const isConfirmed = await this.$bvModal.msgBoxConfirm('Действительно удалить профессию?');
+      if (isConfirmed) {
+        this.removeDepartment(id);
+        this.removeUserDepartment(id);
+      }
+    },
+    async onChangeDepartment(prof) {
+      await this.changeDepartment(prof);
+      this.closeModal();
+    },
+    closeModal() {
+      this.openModal = false;
+      this.department = {
+        id: Math.random(),
+        note: '',
+        parentId: '',
+      };
+    },
   },
 };
 </script>

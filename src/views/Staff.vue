@@ -75,7 +75,7 @@ export default {
     },
     onChangeUser(user) {
       this.changeUser(user);
-      this.openModal = false;
+      this.closeModal();
     },
     closeModal() {
       this.openModal = false;

@@ -26,7 +26,7 @@ export default {
   props: ['dep', 'deps'],
   methods: {
     emitRemoveEvent() {
-      this.$emit('removeProf', { id: this.dep.id });
+      this.$emit('removeDep', { id: this.dep.id });
     },
     emitOpenModal() {
       this.$emit('openModal', { id: this.dep.id });
