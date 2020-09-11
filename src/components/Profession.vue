@@ -1,14 +1,19 @@
 <template>
   <div>
-    <BRow class="p-2" hover v-for="item in professions" :key=item.id>
-      <BCol cols=6>{{item.name}}</BCol>
-      <BCol cols=5>{{item.note}}</BCol>
+    <BRow class="pt-3 pb-3 border">
+      <BCol cols=6>{{prof.name}}</BCol>
+      <BCol cols=5>{{prof.note}}</BCol>
       <BCol class="h5" cols=1>
-        <BIconstack class="pointer" variant="success">
+        <BIconstack class="pointer" variant="success" @click="emitOpenModal">
           <BIcon stacked icon="pencil"></BIcon>
           <BIcon stacked icon="square" scale="1.2"></BIcon>
         </BIconstack>
-        <BIcon class="ml-3 pointer" icon="x-circle" variant="danger"></BIcon>
+        <BIcon
+          class="ml-3 pointer"
+          icon="x-circle"
+          variant="danger"
+          @click="emitRemoveEvent"
+        ></BIcon>
       </BCol>
     </BRow>
   </div>
@@ -17,7 +22,15 @@
 <script>
 export default {
   name: 'Profession',
-  props: ['professions'],
+  props: ['prof'],
+  methods: {
+    emitRemoveEvent() {
+      this.$emit('removeProf', { id: this.prof.id });
+    },
+    emitOpenModal() {
+      this.$emit('openModal', { id: this.prof.id });
+    },
+  },
 };
 </script>
 

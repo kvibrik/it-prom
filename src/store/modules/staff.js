@@ -39,6 +39,34 @@ const staffStore = {
       staff[user.id] = user.user;
       commit('FETCH_STAFF', staff);
     },
+    removeUserProfession({ state, commit }, id) {
+      const staffArray = Object.values(JSON.parse(JSON.stringify(state.staff)));
+      staffArray.forEach((user) => {
+        if (user.professionId === id) {
+          // eslint-disable-next-line no-param-reassign
+          user.professionId = '';
+        }
+      });
+      const staff = staffArray.reduce((acc, current) => {
+        acc[current.id] = current;
+        return acc;
+      }, {});
+      commit('FETCH_STAFF', staff);
+    },
+    removeUserDepartment({ state, commit }, id) {
+      const staffArray = Object.values(JSON.parse(JSON.stringify(state.staff)));
+      staffArray.forEach((user) => {
+        if (user.departmentId === id) {
+          // eslint-disable-next-line no-param-reassign
+          user.departmentId = '';
+        }
+      });
+      const staff = staffArray.reduce((acc, current) => {
+        acc[current.id] = current;
+        return acc;
+      }, {});
+      commit('FETCH_STAFF', staff);
+    },
   },
 };
 

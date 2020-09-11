@@ -25,6 +25,16 @@ const professionsStore = {
       }, {});
       commit('FETCH_PROFESSIONS', reducedProfessions);
     },
+    removeProfession({ state, commit }, id) {
+      const professions = JSON.parse(JSON.stringify(state.professions));
+      delete professions[id];
+      commit('FETCH_PROFESSIONS', professions);
+    },
+    changeProfession({ commit, state }, prof) {
+      const professions = JSON.parse(JSON.stringify(state.professions));
+      professions[prof.id] = prof.prof;
+      commit('FETCH_PROFESSIONS', professions);
+    },
   },
 };
 

@@ -14,7 +14,7 @@
         >
           <BFormInput id="user-secondname" v-model="userInfo.name.secondName" required></BFormInput>
         </BFormGroup>
-        <BFormGroup label-cols-sm="4" label-cols-lg="3" label="Отдел" label-for="user-prof">
+        <BFormGroup label-cols-sm="4" label-cols-lg="3" label="Профессия" label-for="user-prof">
           <BFormSelect
             id="user-prof"
             v-model="selectedProf"
@@ -22,7 +22,7 @@
             @change="onProfessionChange"
           ></BFormSelect>
         </BFormGroup>
-        <BFormGroup label-cols-sm="4" label-cols-lg="3" label="Профессия" label-for="user-dep">
+        <BFormGroup label-cols-sm="4" label-cols-lg="3" label="Отдел" label-for="user-dep">
           <BFormSelect
             id="user-dep"
             v-model="selectedDep"
@@ -46,14 +46,10 @@ export default {
   props: {
     user: {
       type: Object,
-      required: true,
+      // required: true,
     },
-    prof: {
-      type: Object,
-    },
-    dep: {
-
-    },
+    prof: {},
+    dep: {},
   },
   data: () => ({
     userInfo: {},

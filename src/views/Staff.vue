@@ -47,8 +47,8 @@ export default {
         secondName: '',
         lastName: '',
       },
-      professionId: null,
-      departmentId: null,
+      professionId: '',
+      departmentId: '',
       note: '',
     },
     openModal: false,
@@ -79,6 +79,17 @@ export default {
     },
     closeModal() {
       this.openModal = false;
+      this.user = {
+        id: Math.random(),
+        name: {
+          firstName: '',
+          secondName: '',
+          lastName: '',
+        },
+        professionId: '',
+        departmentId: '',
+        note: '',
+      };
     },
   },
 };

@@ -38,10 +38,16 @@ export default {
     },
     getProfession() {
       const profession = this.user.professionId;
+      if (!profession) {
+        return '';
+      }
       return this.prof[profession].name;
     },
     getDepartment() {
       const department = this.user.departmentId;
+      if (!department) {
+        return '';
+      }
       return this.dep[department].name;
     },
   },
@@ -49,8 +55,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .border {
-    box-sizing: border-box;
-    border-bottom: 1px solid rgb(51,51,51);
-  }
 </style>
