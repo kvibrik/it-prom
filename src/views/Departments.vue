@@ -6,7 +6,15 @@
       <BCol cols=3>Родительский отдел</BCol>
       <BCol cols=1></BCol>
     </BRow>
-    <Department :departments="departments" />
+    <div v-for="(dep, name, index) in departments" :key="index">
+      <Department
+        :dep="dep"
+        :deps="departments"
+        @removeProf="onRemoveDep"
+        @openModal="onOpenModal"
+      />
+    </div>
+    <BButton class="mt-4" variant="success" @click="onOpenModal">Добавить сотрудника</BButton>
   </BContainer>
 </template>
 
@@ -19,8 +27,19 @@ export default {
   components: {
     Department,
   },
+  data: () => ({
+    openModal: false,
+    department: {
+      id: Math.random(),
+      note: '',
+    },
+  }),
   computed: {
     ...mapGetters('departments', ['departments']),
+  },
+  methods: {
+    onOpenModal() {},
+    onRemoveDep() {},
   },
 };
 </script>

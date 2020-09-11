@@ -1,30 +1,43 @@
 <template>
   <div>
-    <BRow class="p-2" hover v-for="(value, name, index) in departments" :key="index">
-      <BCol cols=4>{{value.name}}</BCol>
-      <BCol cols=4>{{value.note}}</BCol>
-      <BCol cols=3>{{departments[value.parentId] ? departments[value.parentId]['name'] : ''}}</BCol>
+    <BRow class="pt-3 pb-3 border">
+      <BCol cols=4>{{dep.name}}</BCol>
+      <BCol cols=4>{{dep.note}}</BCol>
+      <BCol cols=3>{{getParentDep}}</BCol>
       <BCol class="h5" cols=1>
-        <BIconstack class="pointer" variant="success">
+        <BIconstack class="pointer" variant="success" @click="emitOpenModal">
           <BIcon stacked icon="pencil"></BIcon>
           <BIcon stacked icon="square" scale="1.2"></BIcon>
         </BIconstack>
-        <BIcon class="ml-3 pointer" icon="x-circle" variant="danger"></BIcon>
+        <BIcon
+          class="ml-3 pointer"
+          icon="x-circle"
+          variant="danger"
+          @click="emitRemoveEvent"
+        ></BIcon>
       </BCol>
     </BRow>
   </div>
 </template>
 
 <script>
-// import { mapGetters } from 'vuex';
-
 export default {
   name: 'Department',
-  data: () => ({
-    parent: {},
-  }),
-  props: ['departments'],
+  props: ['dep', 'deps'],
+  methods: {
+    emitRemoveEvent() {
+      this.$emit('removeProf', { id: this.dep.id });
+    },
+    emitOpenModal() {
+      this.$emit('openModal', { id: this.dep.id });
+    },
+  },
   computed: {
+    getParentDep() {
+      const parent = this.dep.parentId;
+      if (!parent) return '';
+      return this.deps[parent].name;
+    },
   },
 };
 </script>
