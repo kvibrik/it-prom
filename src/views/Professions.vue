@@ -14,7 +14,7 @@
       @changeUser="onChangeProfession"
       @cancel="closeModal"
       />
-    <BButton class="mt-4" variant="success" @click="onOpenModal">Добавить сотрудника</BButton>
+    <BButton class="mt-4" variant="success" @click="onOpenModal">Добавить профессию</BButton>
   </BContainer>
 </template>
 
